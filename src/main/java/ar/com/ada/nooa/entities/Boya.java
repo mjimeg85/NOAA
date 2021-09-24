@@ -4,6 +4,8 @@ import java.util.*;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="boya")
 public class Boya {
@@ -22,7 +24,9 @@ public class Boya {
     @Column(name="latitud_instalacion")
     private Double latitudInstalacion;
     
+    
     @OneToMany(mappedBy = "boya", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<Muestra> muestras= new ArrayList<>();
 
     public void agregarMuestra(Muestra muestra){

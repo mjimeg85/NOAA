@@ -1,11 +1,8 @@
 package ar.com.ada.nooa.services;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import ar.com.ada.nooa.entities.Boya;
 import ar.com.ada.nooa.repos.BoyaRepository;
 
@@ -36,4 +33,15 @@ public class BoyaService {
         repo.save(nueva);
     }
 
+    public Boya calcularColor(Boya boya, Double alturaNivelMar) {
+
+        if (alturaNivelMar <= -50 || alturaNivelMar >= 50) {
+            boya.setColorLuz("amarillo");
+        } else if (alturaNivelMar <= -100 || alturaNivelMar >= 100) {
+            boya.setColorLuz("rojo");
+        } else
+            boya.setColorLuz("verde");
+
+        return boya;
+    }
 }
